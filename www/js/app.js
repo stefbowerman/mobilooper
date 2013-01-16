@@ -72,8 +72,6 @@ LoopListView = Backbone.View.extend({
 LoopListItemView = Backbone.View.extend({
 	tagName : 'li',
 
-	//attributes : {'class' : 'test-class'},
-
 	initialize : function(){
 		this.template = _.template($('#loop-list-item').html());
 	},
@@ -112,49 +110,60 @@ LoopView = Backbone.View.extend({
 
 	audio : '',
 
-	audio_name : "audio_1",
+	//audio_name : "audio_1",
 
-	audio_playing : false,
+	//audio_playing : false,
 
 	initialize : function(){
-		this.audio = new Media(this.model.path);
-		this.audio.play( {numberOfLoops:-1} );
+		this.audio = new Media(this.model.path, null, function(){window.history.back();});
 		_.bindAll(this);
 	},
 
 	render : function(){
 		$(this.el).html(this.template(this.model));
-
+		this.playAudio();
 		return this;
 	},
 
 	events: {
-		"mousedown #play" : "playAudio",
-		"mousedown #stop" : "stopAudio",
-		"click .star" : "addRemoveFavorite",
-		"mousedown #back" : "goBack"
+		"touchstart #play" : "playAudio",
+		"touchstart #stop" : "stopAudio",
+		"touchend .star" : "addRemoveFavorite",
+		"touchstart #back" : "goBack"
 	},
 
 	playAudio : function(){
 		if(this.audio){
 			this.audio.seekTo(0);
 			this.audio.play( {numberOfLoops:-1} );
+			//TODO need to keep track of this, and kill it when stopAudio is called
+			setInterval(this.setAudioPositionText, 50);
 		}
 	},
 
 	stopAudio : function(){
 		if(this.audio){
 			this.audio.stop();
-			this.audio.seekTo(0);			
-		}
+			this.audio.seekTo(0);
+			document.getElementById('audio_position').innerHTML = '';
+		}			
 	},
+
+	setAudioPositionText : function() {
+		if(this.audio){
+			var self = this;
+			this.audio.getCurrentPosition(
+				function(position){var distance = Math.round((position/self.audio.getDuration())*10000/100); $('#audio_position').width( distance + '%')}, 
+				function(){alert('failed');}
+			);
+		}
+    },
 
 	addRemoveFavorite : function(event){
 		if($(event.target).data('loop')){
 			var elFavorite = $(event.target),
 				loopId = $(event.target).data('loop');
 			lpr.addRemoveFavorite(loopId, elFavorite);
-
 		}
 	},
 
@@ -162,8 +171,8 @@ LoopView = Backbone.View.extend({
 		if(this.audio){
 			this.audio.stop();
 			this.audio.release();
+			window.history.back();
 		}
-		window.history.back();
 	},
 });
 
@@ -180,25 +189,13 @@ var AppRouter = Backbone.Router.extend({
 	initialize : function(){
 		var self = this;
 
-		// Check of browser supports touch events...
-        if ('ontouchstart' in document.documentElement) {
-            // ... if yes: register touch event listener to change the "selected" state of the item
-            $('#content').on('touchstart', 'a', function(event){
-                self.selectItem(event);
-            });
-            $('#content').on('touchend', 'a', function(event){
-                self.deselectItem(event);
-            });
-        } else {
-            // ... if not: register mouse events instead
-            $('#content').on('mousedown', 'a', function(event){
-                self.selectItem(event);
-            });
-            $('#content').on('mouseup', 'a', function(event){
-                self.deselectItem(event);
-            });
-        }
-            
+        //register touch event listener to change the "selected" state of the item
+        $('#content').on('touchstart', 'a', function(event){
+            self.selectItem(event);
+        });
+        $('#content').on('touchend', 'a', function(event){
+            self.deselectItem(event);
+        });
 	},
 
 	selectItem:function(event) {
@@ -215,7 +212,6 @@ var AppRouter = Backbone.Router.extend({
 		if(!this.loopList){
 			this.loopList = new LoopCollection();
 		}
-		this.Main
 		this.MainLoopView = new MainLoopView({model : this.loopList, sortType : sort});
 		this.loopList.fetch(sort);
 		$('#content').html(this.MainLoopView.render().el);
@@ -245,6 +241,13 @@ var AppRouter = Backbone.Router.extend({
 
 		// TODO - Use getter
 		this.loop = _.find(this.loopList.models, function(model){return model.id == id ;})
+
+		//make sure we have a loop
+		if(!this.loop){
+			window.history.back();
+			return
+		}
+
 		this.loopView = new LoopView({model : this.loop});
 		$('#content').html(this.loopView.render().el);
 	}

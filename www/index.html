@@ -24,9 +24,9 @@ ul {padding-left:0;}
             <h1>Mobilooper</h1>
         </div>
         <div id="sort-options" class="clearfix">
-            <span class="option <% if(options.sortType === 'bpm') { %> selected <% } %>"><a href="#bpm">BPM</a></span>
-            <span class="option <% if(options.sortType === 'title') { %> selected <% } %>"><a href="#title">ABC</a></span>
-            <span class="option <% if(options.sortType === 'favorites') { %> selected <% } %>"><a href="#favorites">Favorites</a></span>
+            <span class="option <% if(options.sortType === 'bpm') { %> selected <% } %>"><a href="#/bpm">BPM</a></span>
+            <span class="option <% if(options.sortType === 'title') { %> selected <% } %>"><a href="#/title">ABC</a></span>
+            <span class="option <% if(options.sortType === 'favorites') { %> selected <% } %>"><a href="#/favorites">Favorites</a></span>
         </div>
         <div class="scroll">
             <ul id="loopList" class="tableview tableview-links"></ul>
@@ -74,6 +74,7 @@ ul {padding-left:0;}
         <center><img src="<%= img %>" style="width:95%"/></center>
         <div style="width:100%">
             <div style="text-align:center">
+                <div id="audio_position" style="height:10px;background:red"></div>
                 <span id="play" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:blue">PLAY</span>
                 <span id="stop" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:red">STOP</span>
                 <span class="btn" style="width:10%;padding-top:10px;padding-bottom:10px;">
