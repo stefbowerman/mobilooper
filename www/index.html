@@ -1,0 +1,158 @@
+<style type="text/css">
+.favorite {color:gold;}
+/* li {list-style:none;}
+ul {padding-left:0;}
+*/
+</style>
+
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <title>Mobilooper</title>
+    </head>
+    <body>
+
+    <div id="content" style=""></div>
+
+    <script type="text/template" id="main-loop">
+        <div class="header">
+            <h1>Mobilooper</h1>
+        </div>
+        <div id="sort-options" class="clearfix">
+            <span class="option <% if(options.sortType === 'bpm') { %> selected <% } %>"><a href="#bpm">BPM</a></span>
+            <span class="option <% if(options.sortType === 'title') { %> selected <% } %>"><a href="#title">ABC</a></span>
+            <span class="option <% if(options.sortType === 'favorites') { %> selected <% } %>"><a href="#favorites">Favorites</a></span>
+        </div>
+        <div class="scroll">
+            <ul id="loopList" class="tableview tableview-links"></ul>
+        </div>
+    </script>
+
+    <script type="text/template" id="loop-list-item">
+        <a id="<%= id %>" class="loop-list-item-holder clearfix" data-loop="<%= id %>">
+            <!-- span class="star <% if (_.contains(store.get('favorites'), id)) { %>favorite<% } %>" data-loop="<%= id %>">&#9733;</span -->
+            <img src="<%= img %>"/>
+            <div class="rowdata" data-loop="<%= id %>">
+                <div class="meta-data left <% if(!artist){ %>no-artist<% } %>">
+                    <span class="title"><%= title %></span>
+                    <% if(artist){ %>
+                        <br />
+                        <span class="quiet small"><%= artist %></span> 
+                    <% } %>
+                </div> 
+                <div class="right bpm">
+                    <%= bpm %>
+                </div>
+            </div>
+        </a>
+    </script>
+
+    <script type="text/template" id="loop-detail">
+        <div class="header">
+            <span id="back" class="btn header-button header-button-left">Back</span><h1>Mobilooper</h1>
+        </div>
+
+        <!-- iPod style -->
+        <div id="sort-options" class="clearfix small" style="text-align:center">
+                <div>
+                    Title : <%= title %>
+                </div>
+                <% if(artist){ %>
+                    <div>
+                        Artist : <%= artist %>
+                    </div>
+                <% } %>
+                <div>
+                    BPM : <%= bpm %>
+                </div>
+        </div>
+        <center><img src="<%= img %>" style="width:95%"/></center>
+        <div style="width:100%">
+            <div style="text-align:center">
+                <span id="play" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:blue">PLAY</span>
+                <span id="stop" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:red">STOP</span>
+                <span class="btn" style="width:10%;padding-top:10px;padding-bottom:10px;">
+                    <span class="star <% if (_.contains(store.get('favorites'), id)) { %>favorite<% } %>" data-loop="<%= id %>">&#9733;</span>
+                </span>
+            </div>
+        </div>
+
+<!--
+        <div>
+            <div class="left" style="width:49%; text-align:center">
+                <img src="<%= img %>" class="left" style="width:100px; margin:auto"/>
+            </div>
+            <div style="width:50%; display:inline-block">
+                <div>
+                    Title : <%= title %>
+                </div>
+                <% if(artist){ %>
+                    <div>
+                        Artist : <%= artist %>
+                    </div>
+                <% } %>
+                <div>
+                    BPM : <%= bpm %>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both" />
+        <hr />
+        <div style="width:100%">
+            <span class="star <% if (_.contains(store.get('favorites'), id)) { %>favorite<% } %>" data-loop="<%= id %>">&#9733;</span>
+            <div style="text-align:center">
+                <span id="play" class="btn" style="width:35%;padding-top:20px;padding-bottom:20px;color:blue">PLAY</span>
+                <span id="stop" class="btn" style="width:35%;padding-top:20px;padding-bottom:20px;color:red">STOP</span>
+            </div>
+        </div>
+    -->
+    </script>
+
+
+        <script type="text/javascript" src="cordova-2.1.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/underscore-min.js"></script>
+        <script type="text/javascript" src="js/backbone-min.js"></script>
+        <!--script type="text/javascript" src="js/jquery-json-2.3.js"></script -->
+        <script src="js/store.js"></script>
+        <script src="js/json.js"></script>
+        <!--script src="js/store_json2.min.js"></script-->
+        <script src="js/SeamlessLoop.js"></script>
+        <script src="js/loopStore.js"></script>
+        <script src="js/app.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // Cordova is ready
+            //
+            function onDeviceReady() {
+                var app = new AppRouter();
+                Backbone.history.start();
+            }
+        </script>
+    </body>
+</html>

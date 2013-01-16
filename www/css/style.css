@@ -1,0 +1,248 @@
+/* Boring Stuff */
+html{
+	height: 100%;
+}
+
+body{
+	/*font-family: Arial, Helvetica, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	*/ font-family: Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	background-color: #fff;
+	overflow: hidden;
+	position: relative;
+	color:#333333;
+	text-transform:none !important;
+}
+
+a {
+	text-decoration: none;
+	color: #0F5FA8;
+}
+a:visited{
+	color: #0F5FA8;
+}
+
+.small{
+	font-size:12px;
+}
+
+.quiet {
+	color:#BBB;
+}
+
+.left {float:left; }
+.right {float:right;}
+
+/* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
+   j.mp/bestclearfix */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix { zoom: 1; }
+
+/* App CSS */
+
+#content {
+    position: absolute;
+    background: #ddd;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.header{
+	-webkit-background-size: 1px 44px;
+	-moz-background-size: 1px 44px;
+	-ms-background-size: 1px 44px;
+	-o-background-size: 1px 44px;
+	background-size: 1px 44px;
+	height: 44px;
+	line-height: 44px;
+	width: 100%;
+	color: #444;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	margin-bottom: 7px
+}
+
+.header h1{
+	padding: 0;
+	text-align: center;
+	font-size: 20px;
+	font-weight:bold;
+	/* text-shadow: 0 -1px rgba(255,255,255, .7); */
+	margin: 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+	color:white;
+	background-image:-webkit-gradient(linear,left top,left bottom,from(#5A5A5A),to(#020202));
+	background-image: -o-linear-gradient(center bottom,#457D36,#7AC066)
+}
+
+.header-button{
+	position: absolute;
+	top: 5px;
+	padding: 7px 5px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	line-height: 1em;
+}
+
+.header-button-left{
+	left: 5px;
+}
+
+.header-button-right{
+	right: 5px;
+}
+
+#sort-options {
+	border-bottom:1px solid #BEBEBE;
+}
+
+#sort-options .option {
+	float:left;
+	width:33%;
+	text-align:center;
+	padding:5px 0;
+}
+
+#sort-options .selected a{
+	color: #2E7AC0;
+	font-weight: bold;
+}
+
+.scroll{
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	background-color: #e2e7ed;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	box-orient: vertical;
+    position: absolute;
+    top: 80px;
+	bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.tableview{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: #fff;
+	border-bottom: 1px solid #e0e0e0;
+}
+.tableview li{
+	display: block;
+	border-top: 1px solid #e0e0e0;
+	padding: 10px;
+}
+
+.tableview-links li{
+	padding: 0;
+	display: -webkit-box;
+	width: 100%;
+	height:45px;
+}
+
+.tableview-links li>a{
+	color:#333333;
+	width:100%;
+	display:block;
+}
+
+.tableview-links li>a *{
+	pointer-events: none;
+}
+
+.tableview-links li>a.tappable-active{
+	color: #fff;
+	background-color: #4286f5;
+	background-repeat: repeat-x;
+}
+.tableview-links li>a.tappable-active *{
+	color: #fff;
+}
+
+.tableview-links li .loop-list-item-holder{
+	width:100%;
+}
+
+.tableview-links li .tappable-active{
+	color: #fff;
+	background-color: #4286f5;
+	background-repeat: repeat-x;
+}
+.tableview-links li>a.tappable-active *{
+	color: #fff;
+}
+
+.tableview-links li .rowdata{
+	height:45px;
+	width:100%;
+	vertical-align:top;
+}
+
+.tableview-links li .rowdata .meta-data{
+	display:inline-block;
+	padding:5px 0;
+	height: 35px;
+}
+
+.tableview-links li .rowdata .no-artist{
+	padding:10px 0;
+	height:25px;
+}
+
+.tableview-links li .rowdata .bpm{
+	padding:10px;
+	height:25px;
+}
+
+.tableview-links li img{
+	height:45px;
+	padding: 0 5px 0 0;
+	float:left;
+}
+
+/* Buttons */
+
+.btn {
+	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:12px;
+	font-weight:normal;
+	padding:5px 13px;
+	text-decoration:none;
+	text-shadow:1px 0px 0px #ffffff;
+}
+.btn:hover {
+	background-color:#dfdfdf;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}
