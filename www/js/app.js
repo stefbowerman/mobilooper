@@ -198,6 +198,7 @@ var AppRouter = Backbone.Router.extend({
                 self.deselectItem(event);
             });
         }
+            
 	},
 
 	selectItem:function(event) {
