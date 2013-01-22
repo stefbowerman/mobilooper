@@ -1,5 +1,5 @@
 <style type="text/css">
-.favorite {color:gold;}
+.favorite {color:gold !important;}
 </style>
 
 <!DOCTYPE html>
@@ -25,15 +25,9 @@
             <span id="sort-button" class="btn header-button header-button-right">Sort</span>
                 <div id="sort-list" class="popdown right" style="display:none">
                     <ul>
-                        <li class="option <% if(options.sortType === 'bpm') { %> selected <% } %>">
-                            <a href="#bpm">BPM</a>
-                        </li>
-                        <li class="option <% if(options.sortType === 'title') { %> selected <% } %>">
-                            <a href="#/title">ABC</a>
-                        </li>
-                        <li class="option <% if(options.sortType === 'favorites') { %> selected <% } %>">
-                            <a href="#/favorites">Favorites</a>
-                        </li>
+                        <li id="bpm" class="option selected" data-sort="bpm">BPM</li>
+                        <li id="title" class="option" data-sort="title">ABC</li>
+                        <li id="favorites" class="option" data-sort="favorites">Favorites</li>
                     </ul>
                 </div>
         </div>
@@ -135,7 +129,6 @@
     <script type="text/javascript" src="js/libs/jquery-1-8-2-min.js"></script>
     <script type="text/javascript" src="js/libs/underscore-min.js"></script>
     <script type="text/javascript" src="js/libs/backbone-min.js"></script>
-    <script type="text/javascript" src="js/libs/SeamlessLoop.js"></script>
     <script type="text/javascript" src="js/libs/json.js"></script>
     <script type="text/javascript" src="js/libs/store.js"></script>
     <script type="text/javascript" src="js/loopStore.js"></script>

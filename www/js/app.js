@@ -42,11 +42,12 @@ MainLoopView = Backbone.View.extend({
 	},
 
 	events: {
-		'mousedown #sort-button' : 'toggleSort'
+		'touchstart #sort-button' : 'toggleSort',
+		"touchstart .option" : 'sortSelect',
 	},
 
 	render : function(){
-		$(this.el).html(this.template({options : this.options}));
+		$(this.el).html(this.template());
 		this.listView = new LoopListView({el : $('#loopList', this.el), model : this.model});
 		this.listView.render();
 		return this;
@@ -54,6 +55,14 @@ MainLoopView = Backbone.View.extend({
 
 	toggleSort : function(){
 		$('#sort-list').toggle();
+	},
+
+	sortSelect : function(){
+		//check for null val ?
+		this.model.fetch($(event.target).data('sort'));
+		this.listView.render();
+		$.each($('.option'), function(i, x){$(x).removeClass('selected');})
+		$(event.target).addClass('selected');
 	},
 });
 
@@ -90,8 +99,8 @@ LoopListItemView = Backbone.View.extend({
 	},
 
 	events : {
-		'click .star' : 'addRemoveFavorite',
-		'click .loop-list-item-holder' : 'goToLoop'
+		'touchstart .star' : 'addRemoveFavorite',
+		'touchstart .loop-list-item-holder' : 'goToLoop'
 	},
 
 	addRemoveFavorite : function(event){
@@ -192,9 +201,6 @@ LoopView = Backbone.View.extend({
 var AppRouter = Backbone.Router.extend({
 	routes : {
 		'' : 'list',
-		'bpm' : 'bpm',
-		'favorites' : 'favorites',
-		'title' : 'title',
 		'loop/:id' : 'loopDetail'
 	},
 
@@ -224,25 +230,14 @@ var AppRouter = Backbone.Router.extend({
 		if(!this.loopList){
 			this.loopList = new LoopCollection();
 		}
-		this.MainLoopView = new MainLoopView({model : this.loopList, sortType : sort});
+		this.MainLoopView = new MainLoopView({model : this.loopList});
 		this.loopList.fetch(sort);
 		$('#content').html(this.MainLoopView.render().el);
 	},
 
+	// Actual route functions
 	list : function(){
 		this.createListing();
-	},
-
-	bpm : function(){
-		this.createListing('bpm');
-	},
-
-	favorites : function(){
-		this.createListing('favorites');
-	},
-
-	title : function(){
-		this.createListing('title');
 	},
 
 	loopDetail : function(id){

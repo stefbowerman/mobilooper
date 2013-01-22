@@ -93,7 +93,7 @@ a:visited{
 .header-button{
 	position: absolute;
 	z-index:2;
-	top: 10px;
+	top: 6px;
 	padding: 7px 5px;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	line-height: 1em;
@@ -111,16 +111,17 @@ a:visited{
 	position:absolute;
 	z-index:1000;
 	top:50px; 
-	border:2px solid black;
+	border:2px solid rgb(100, 100, 100);
+	border-radius:6px;
 	width:45%;
 	background-color:rgb(240, 240, 240);
 }
 
 .header .popdown.right{
-	right:10px;
+	right:5px;
 }
 .header .popdown.left{
-	left:10px;
+	left:5px;
 }
 
 .header ul{
@@ -133,18 +134,7 @@ a:visited{
 	border-bottom: 1px dotted lightgrey;
 }
 
-#sort-options {
-	border-bottom:1px solid #BEBEBE;
-}
-
-#sort-options .option {
-	float:left;
-	width:33%;
-	text-align:center;
-	padding:5px 0;
-}
-
-#sort-options .selected a{
+#sort-list ul li.selected{
 	color: #2E7AC0;
 	font-weight: bold;
 }
@@ -231,6 +221,10 @@ a:visited{
 	height: 35px;
 }
 
+.tableview-links li .rowdata .title{
+	text-overflow: ellipsis;
+}
+
 .tableview-links li .rowdata .no-artist{
 	padding:10px 0;
 	height:25px;
@@ -260,10 +254,8 @@ a:visited{
 	border:1px solid #dcdcdc;
 	display:inline-block;
 	color:#777777;
-	font-family:arial;
-	font-size:12px;
 	font-weight:normal;
-	padding:5px 13px;
+	padding:6px 15px;
 	text-decoration:none;
 	text-shadow:1px 0px 0px #ffffff;
 }
