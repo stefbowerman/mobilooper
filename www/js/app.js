@@ -41,12 +41,20 @@ MainLoopView = Backbone.View.extend({
 		this.template = _.template($('#main-loop').html());
 	},
 
+	events: {
+		'mousedown #sort-button' : 'toggleSort'
+	},
+
 	render : function(){
 		$(this.el).html(this.template({options : this.options}));
-		this.listView = new LoopListView({el : $('ul', this.el), model : this.model});
+		this.listView = new LoopListView({el : $('#loopList', this.el), model : this.model});
 		this.listView.render();
 		return this;
-	}
+	},
+
+	toggleSort : function(){
+		$('#sort-list').toggle();
+	},
 });
 
 LoopListView = Backbone.View.extend({
@@ -173,6 +181,10 @@ LoopView = Backbone.View.extend({
 			this.audio.release();
 			window.history.back();
 		}
+                                
+        //move this into a thing to manage views.
+        this.remove();
+        this.unbind();
 	},
 });
 

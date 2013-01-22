@@ -4,8 +4,8 @@ html{
 }
 
 body{
-	/*font-family: Arial, Helvetica, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	*/ font-family: Helvetica, Arial, sans-serif;
+	/*font-family: Arial, Helvetica, 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+	font-family: 'Quantico', Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	margin: 0;
 	padding: 0;
@@ -86,12 +86,14 @@ a:visited{
 	box-flex: 1;
 	color:white;
 	background-image:-webkit-gradient(linear,left top,left bottom,from(#5A5A5A),to(#020202));
-	background-image: -o-linear-gradient(center bottom,#457D36,#7AC066)
+	background-image: -o-linear-gradient(center bottom,#457D36,#7AC066);
+	position:relative;
 }
 
 .header-button{
 	position: absolute;
-	top: 5px;
+	z-index:2;
+	top: 10px;
 	padding: 7px 5px;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	line-height: 1em;
@@ -103,6 +105,32 @@ a:visited{
 
 .header-button-right{
 	right: 5px;
+}
+
+.header .popdown{
+	position:absolute;
+	z-index:1000;
+	top:50px; 
+	border:2px solid black;
+	width:45%;
+	background-color:rgb(240, 240, 240);
+}
+
+.header .popdown.right{
+	right:10px;
+}
+.header .popdown.left{
+	left:10px;
+}
+
+.header ul{
+	list-style:none;
+	padding: 5px 10px;
+	margin:0;
+}
+
+.header ul li:not(:last-child){
+	border-bottom: 1px dotted lightgrey;
 }
 
 #sort-options {
@@ -133,7 +161,7 @@ a:visited{
 	-moz-box-orient: vertical;
 	box-orient: vertical;
     position: absolute;
-    top: 80px;
+    top: 43px;
 	bottom: 0px;
     left: 0px;
     right: 0px;

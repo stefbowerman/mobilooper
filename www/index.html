@@ -1,8 +1,5 @@
 <style type="text/css">
 .favorite {color:gold;}
-/* li {list-style:none;}
-ul {padding-left:0;}
-*/
 </style>
 
 <!DOCTYPE html>
@@ -12,22 +9,35 @@ ul {padding-left:0;}
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/fonts/css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link href="http://fonts.googleapis.com/css?family=Cabin+Condensed|Scada|Quantico" rel="stylesheet" type="text/css">
         <title>Mobilooper</title>
     </head>
     <body onLoad="onLoad()">
 
     <div id="content"></div>
 
+    <!-- TODO: Get rid of <a> tags, make on click events for <li>s -->
     <script type="text/template" id="main-loop">
         <div class="header">
             <h1>Mobilooper</h1>
+            <span id="sort-button" class="btn header-button header-button-right">Sort</span>
+                <div id="sort-list" class="popdown right" style="display:none">
+                    <ul>
+                        <li class="option <% if(options.sortType === 'bpm') { %> selected <% } %>">
+                            <a href="#bpm">BPM</a>
+                        </li>
+                        <li class="option <% if(options.sortType === 'title') { %> selected <% } %>">
+                            <a href="#/title">ABC</a>
+                        </li>
+                        <li class="option <% if(options.sortType === 'favorites') { %> selected <% } %>">
+                            <a href="#/favorites">Favorites</a>
+                        </li>
+                    </ul>
+                </div>
         </div>
-        <div id="sort-options" class="clearfix">
-            <span class="option <% if(options.sortType === 'bpm') { %> selected <% } %>"><a href="#/bpm">BPM</a></span>
-            <span class="option <% if(options.sortType === 'title') { %> selected <% } %>"><a href="#/title">ABC</a></span>
-            <span class="option <% if(options.sortType === 'favorites') { %> selected <% } %>"><a href="#/favorites">Favorites</a></span>
-        </div>
+
         <div class="scroll">
             <ul id="loopList" class="tableview tableview-links"></ul>
         </div>
@@ -54,32 +64,38 @@ ul {padding-left:0;}
 
     <script type="text/template" id="loop-detail">
         <div class="header">
-            <span id="back" class="btn header-button header-button-left">Back</span><h1>Mobilooper</h1>
+            <span id="back" class="btn header-button header-button-left">Back</span>
+            <h1>Mobilooper</h1>
+            <span id="favorite" class="btn header-button header-button-right star <% if (_.contains(store.get('favorites'), id)) { %>favorite<% } %>" data-loop="<%= id %>">
+                &#9733;
+            </span>
         </div>
 
-        <!-- iPod style -->
-        <div id="sort-options" class="clearfix small" style="text-align:center">
-                <div>
-                    Title : <%= title %>
-                </div>
-                <% if(artist){ %>
+        <div class="scroll clearfix">
+            <!-- iPod style -->
+            <div id="sort-options" class="clearfix small" style="text-align:center">
                     <div>
-                        Artist : <%= artist %>
+                        Title : <%= title %>
                     </div>
-                <% } %>
-                <div>
-                    BPM : <%= bpm %>
+                    <% if(artist){ %>
+                        <div>
+                            Artist : <%= artist %>
+                        </div>
+                    <% } %>
+                    <div>
+                        BPM : <%= bpm %>
+                    </div>
+            </div>
+            <center><img src="<%= img %>" style="width:95%"/></center>
+            <div style="width:100%">
+                <div style="text-align:center">
+                    <div id="audio_position" style="height:10px;background:red"></div>
+                    <span id="play" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:blue">PLAY</span>
+                    <span id="stop" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:red">STOP</span>
+                    <span class="btn" style="display:none;width:10%;padding-top:10px;padding-bottom:10px;">
+                        <span class="star <% if (_.contains(store.get('favorites'), id)) { %>favorite<% } %>" data-loop="<%= id %>">&#9733;</span>
+                    </span>
                 </div>
-        </div>
-        <center><img src="<%= img %>" style="width:95%"/></center>
-        <div style="width:100%">
-            <div style="text-align:center">
-                <div id="audio_position" style="height:10px;background:red"></div>
-                <span id="play" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:blue">PLAY</span>
-                <span id="stop" class="btn" style="width:30%;padding-top:10px;padding-bottom:10px;color:red">STOP</span>
-                <span class="btn" style="width:10%;padding-top:10px;padding-bottom:10px;">
-                    <span class="star <% if (_.contains(store.get('favorites'), id)) { %>favorite<% } %>" data-loop="<%= id %>">&#9733;</span>
-                </span>
             </div>
         </div>
 
@@ -113,6 +129,7 @@ ul {padding-left:0;}
         </div>
     -->
     </script>
+
     <script type="text/javascript" src="cordova-2.3.0.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/libs/jquery-1-8-2-min.js"></script>
@@ -120,11 +137,11 @@ ul {padding-left:0;}
     <script type="text/javascript" src="js/libs/backbone-min.js"></script>
     <script type="text/javascript" src="js/libs/SeamlessLoop.js"></script>
     <script type="text/javascript" src="js/libs/json.js"></script>
-    <!--script type="text/javascript" src="js/libs/jquery-json-2.3.js"></script -->
-    <!--script type="text/javascript" src="js/store_json2.min.js"></script-->
-    <script type="text/javascript" src="js/store.js"></script>
+    <script type="text/javascript" src="js/libs/store.js"></script>
     <script type="text/javascript" src="js/loopStore.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <!--script type="text/javascript" src="js/libs/jquery-json-2.3.js"></script -->
+    <!--script type="text/javascript" src="js/store_json2.min.js"></script-->
     <script type="text/javascript">
             app.initialize();
             onLoad = function(){
