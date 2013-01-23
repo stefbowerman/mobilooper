@@ -42,8 +42,8 @@ MainLoopView = Backbone.View.extend({
 	},
 
 	events: {
-		'touchstart #sort-button' : 'toggleSort',
-		"touchstart .option" : 'sortSelect',
+		'click #sort-button' : 'toggleSort',
+		'click .option' : 'sortSelect',
 	},
 
 	render : function(){
@@ -99,8 +99,8 @@ LoopListItemView = Backbone.View.extend({
 	},
 
 	events : {
-		'touchstart .star' : 'addRemoveFavorite',
-		'touchstart .loop-list-item-holder' : 'goToLoop'
+		'click .star' : 'addRemoveFavorite',
+		'click .loop-list-item-holder' : 'goToLoop'
 	},
 
 	addRemoveFavorite : function(event){
@@ -145,8 +145,8 @@ LoopView = Backbone.View.extend({
 	events: {
 		"touchstart #play" : "playAudio",
 		"touchstart #stop" : "stopAudio",
-		"touchend .star" : "addRemoveFavorite",
-		"touchstart #back" : "goBack"
+		"click .star" : "addRemoveFavorite",
+		"click #back" : "goBack"
 	},
 
 	playAudio : function(){

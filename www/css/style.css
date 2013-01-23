@@ -57,13 +57,13 @@ a:visited{
 }
 
 .header{
-	-webkit-background-size: 1px 44px;
-	-moz-background-size: 1px 44px;
-	-ms-background-size: 1px 44px;
-	-o-background-size: 1px 44px;
-	background-size: 1px 44px;
-	height: 44px;
-	line-height: 44px;
+	-webkit-background-size: 1px 50px;
+	-moz-background-size: 1px 50px;
+	-ms-background-size: 1px 50px;
+	-o-background-size: 1px 50px;
+	background-size: 1px 50px;
+	height: 50px;
+	line-height: 50px;
 	width: 100%;
 	color: #444;
 	-webkit-user-select: none;
@@ -93,10 +93,8 @@ a:visited{
 .header-button{
 	position: absolute;
 	z-index:2;
-	top: 6px;
-	padding: 7px 5px;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	line-height: 1em;
+	top: 8px;
+	line-height:1em;
 }
 
 .header-button-left{
@@ -110,7 +108,7 @@ a:visited{
 .header .popdown{
 	position:absolute;
 	z-index:1000;
-	top:50px; 
+	top:55px; 
 	border:2px solid rgb(100, 100, 100);
 	border-radius:6px;
 	width:45%;
@@ -151,7 +149,7 @@ a:visited{
 	-moz-box-orient: vertical;
 	box-orient: vertical;
     position: absolute;
-    top: 43px;
+    top: 50px;
 	bottom: 0px;
     left: 0px;
     right: 0px;
@@ -244,24 +242,21 @@ a:visited{
 /* Buttons */
 
 .btn {
-	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
-	box-shadow:inset 0px 0px 0px 0px #ffffff;
-	background-color:#ededed;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
+	padding: 8px 15px;
+	border:solid 1px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-sizing:border-box;
 	display:inline-block;
-	color:#777777;
-	font-weight:normal;
-	padding:6px 15px;
-	text-decoration:none;
-	text-shadow:1px 0px 0px #ffffff;
+	font-weight:bold;
+	min-width:50px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	color: #FFF;
+	border-color: rgb(58, 58, 60) rgb(87, 87, 87) rgb(105, 105, 105);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .35);
 }
-.btn:hover {
-	background-color:#dfdfdf;
-}
+
 .btn:active {
 	position:relative;
 	top:1px;
