@@ -1,6 +1,8 @@
 //PhoneGap media constants 
 
-//Utils
+//===================================
+// Utils
+//===================================
 var lpr = window.lpr = {};
 
 	lpr.addRemoveFavorite = function(id, elem){
@@ -19,7 +21,9 @@ var lpr = window.lpr = {};
 		}
 	}
 
+//===================================
 // Models
+//===================================
 
 Loop = Backbone.Model.extend({});
 
@@ -32,9 +36,11 @@ LoopCollection = Backbone.Collection.extend({
 	}
 });
 
+//===================================
 // Views
+//===================================
 
-	// Main display view.  Takes care of the chrome.  LoopListView is only responsible for rendering the list
+// Main display view.  Takes care of the chrome.  LoopListView is only responsible for rendering the list
 MainLoopView = Backbone.View.extend({
 
 	initialize : function(){
@@ -127,10 +133,6 @@ LoopView = Backbone.View.extend({
 
 	audio : '',
 
-	//audio_name : "audio_1",
-
-	//audio_playing : false,
-
 	initialize : function(){
 		this.audio = new Media(this.model.path, null, function(){window.history.back();});
 		_.bindAll(this);
@@ -197,7 +199,9 @@ LoopView = Backbone.View.extend({
 	},
 });
 
+//===================================
 // Router
+//===================================
 var AppRouter = Backbone.Router.extend({
 	routes : {
 		'' : 'list',
@@ -206,6 +210,7 @@ var AppRouter = Backbone.Router.extend({
 
 	initialize : function(){
 		var self = this;
+		new FastClick(document.body);
 
         //register touch event listener to change the "selected" state of the item
         $('#content').on('touchstart', 'a', function(event){

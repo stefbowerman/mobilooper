@@ -37,6 +37,7 @@ a:visited{
 
 .left {float:left; }
 .right {float:right;}
+.favorite {color:gold !important;}
 
 /* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
    j.mp/bestclearfix */
@@ -111,10 +112,11 @@ a:visited{
 	position:absolute;
 	z-index:1000;
 	top:55px; 
-	border:2px solid rgb(100, 100, 100);
+	border:1px solid rgb(200, 200, 200);
 	border-radius:6px;
-	width:45%;
-	background-color:rgb(240, 240, 240);
+	width:150px;
+	background-color:#FFF;
+	box-shadow: 0 0 12px -3px rgba(0, 0, 0, 0.7);
 }
 
 .header .popdown.right{
@@ -131,13 +133,78 @@ a:visited{
 }
 
 .header ul li:not(:last-child){
-	border-bottom: 1px dotted lightgrey;
+	border-bottom: 1px dotted rgb(213, 213, 213);
 }
 
-#sort-list ul li.selected{
-	color: #2E7AC0;
-	font-weight: bold;
+#sort-list li.option > div {
+	margin:-10px 0;
 }
+
+#sort-list li {
+	padding-left:10px;
+	height:30px;
+	line-height:30px;
+	text-transform: uppercase;
+}
+#sort-list li.selected{
+	/*padding-left:0;
+	color: #2E7AC0;
+	font-weight: bold;*/
+}
+#sort-list li.selected:before {
+	/*content: "✓";*/
+}
+
+.triangle-border:before {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:40px; /* controls horizontal position */
+    border-width:20px 20px 0;
+	border-style:solid;
+    
+	border-color: rgb(200, 200, 200) transparent;
+    display:block; 
+    width:0;
+	border-width: 1px;
+}
+
+/* creates the smaller  triangle */
+.triangle-border:after {
+	content:"";
+	position:absolute;
+	bottom:-13px; /* value = - border-top-width - border-bottom-width */
+	left:47px; /* value = (:before left) + (:before border-left) - (:after border-left) */
+	border-width:13px 13px 0;
+	border-style:solid;
+	border-color:#fff transparent;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant : top
+------------------------------------------ */
+
+/* creates the larger triangle */
+.triangle-border.top:before {
+	top:-11px; /* value = - border-top-width - border-bottom-width */
+	bottom:auto;
+	left:auto;
+	right:15px; /* controls horizontal position */
+    border-width:0 10px 10px;
+}
+
+/* creates the smaller  triangle */
+.triangle-border.top:after {
+	top: -10px; /* value = - border-top-width - border-bottom-width */
+	bottom:auto;
+	left:auto;
+	right: 15px; /* value = (:before right) + (:before border-right) - (:after border-right) */
+    
+	border-width: 0 10px 10px;
+}
+
 
 .scroll{
 	-webkit-box-flex: 1;
@@ -159,7 +226,7 @@ a:visited{
 }
 
 .tableview{
-	margin: 5px 10px 10px;
+	margin: 10px;
 	padding: 0;
 	list-style: none;
 	background-color: #fff;
@@ -202,7 +269,7 @@ a:visited{
 
 .tableview-links li>a.tappable-active{
 	color: #fff;
-	background-color: #4286f5;
+	background-color: rgb(243, 109, 46);
 	background-repeat: repeat-x;
 }
 .tableview-links li>a.tappable-active *{
@@ -215,7 +282,7 @@ a:visited{
 
 .tableview-links li .tappable-active{
 	color: #fff;
-	background-color: #4286f5;
+	background-color: rgb(243, 109, 46);
 	background-repeat: repeat-x;
 }
 .tableview-links li>a.tappable-active *{

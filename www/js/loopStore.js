@@ -100,7 +100,7 @@ var loopStore = [
 	}
 ]
 
-var getLoopStore = function(sort){
+getLoopStore = function(sort){
 	sort = (typeof sort === 'undefined') ? 'bpm' : sort;
 
 	if(sort === 'favorites'){
@@ -114,7 +114,7 @@ var getLoopStore = function(sort){
 	}
 }
 
-var bpmSort = function(loopStore){
+bpmSort = function(loopStore){
 
 	var sortedArray = _.sortBy(loopStore, function(loop){
 		return (-loop['bpm']);
@@ -122,7 +122,7 @@ var bpmSort = function(loopStore){
 	return sortedArray;
 }
 
-var titleSort = function(loopStore){
+titleSort = function(loopStore){
 
 	var sortedArray = _.sortBy(loopStore, function(loop){
 		return loop['title'];
@@ -131,7 +131,7 @@ var titleSort = function(loopStore){
 	return sortedArray;
 }
 
-var favoriteSort = function(loopStore){
+favoriteSort = function(loopStore){
 
 	var favorites = store.get('favorites');
 
