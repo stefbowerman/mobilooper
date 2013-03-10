@@ -136,6 +136,12 @@ a:visited{
 	border-bottom: 1px dotted rgb(213, 213, 213);
 }
 
+.footer {
+	position:fixed;
+	bottom:0;
+	width:100%;
+}
+
 #sort-list li.option > div {
 	margin:-10px 0;
 }
@@ -231,7 +237,7 @@ a:visited{
 	list-style: none;
 	background-color: #fff;
 	border-bottom: 1px solid #e0e0e0;
-	border-radius: 5px;
+	border-radius: 2px;
 	box-shadow: 0 0 15px -4px #BBB;
 }
 .tableview li{
@@ -325,13 +331,54 @@ a:visited{
 	border-radius:3px;
 }
 
+/* Loop Player */
+/* ======================================== */
+
+.loop-player-container {
+	margin: 10px;
+	padding: 0;
+	list-style: none;
+	background-color: #fff;
+	border-bottom: 1px solid #e0e0e0;
+	border-radius: 2px;
+	box-shadow: 0 0 15px -4px #BBB;
+}
+
+.player-control-buttons {
+
+}
+.player-control-button {
+	display:inline-block;
+}
+.player-control-buttons .player-control-button:first-child .player-control-button-face {
+	border-left:none;
+	/*border-bottom-left-radius:5px;*/
+}
+.player-control-buttons .player-control-button:last-child .player-control-button-face {
+	border-right:none;
+	/*border-bottom-right-radius:5px;*/
+}
+
+.player-control-button-face {
+	padding:10px 0;
+	/*background-image:-webkit-linear-gradient(bottom, #2B2B2B 0%, #707073 100%);*/
+	background-color:#333;
+	color:white;
+	font-weight:bold;
+	font-size:18px;
+	border-right: 1px solid rgb(27, 27, 27);
+	border-left: 1px solid rgb(129, 127, 127);
+	text-transform: uppercase;
+	text-align:center;
+}
+
 /* Buttons */
 
 .btn {
 	padding: 8px 15px;
 	border:solid 1px;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
 	-webkit-box-sizing:border-box;
 	display:inline-block;
 	font-weight:bold;
